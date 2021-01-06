@@ -61,7 +61,6 @@ puis on change la source de l'iframe par celle de l'edt de l'utilisateur, puis o
 */
 const submit = function (event) {
   if (prenom.value != "" && nom.value != "") {
-    console.log("submit");
     iFrame.src = `https://edtmobiliteng.wigorservices.net//WebPsDyn.aspx?action=posEDTBEECOME&serverid=C&Tel=${prenom.value.toLowerCase()}.${nom.value.toLowerCase()}&date=${
       (date.getMonth() > 8
         ? date.getMonth() + 1
@@ -74,6 +73,7 @@ const submit = function (event) {
     event.preventDefault();
 
     edtPage.classList.remove("hide");
+    iFrame.classList.add("hide");
     popTip();
   }
 };
@@ -91,7 +91,9 @@ const popTip = () => {
 
 //Quand l'iframe à fini de charger on enlève l'overlay la
 iFrame.onload = function () {
+  console.log("ok!");
   timerOut = true;
+  iFrame.classList.remove("hide");
   overlay.classList.add("hide");
 };
 
