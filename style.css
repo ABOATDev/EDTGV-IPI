@@ -63,6 +63,40 @@ body {
   color: rgb(220, 220, 220);
 }
 
+.section-fast {
+  width: 500px;
+  padding: 30px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background: #3a506b;
+  margin-bottom: 20px;
+}
+
+.section-fast button {
+  transition: 0.3s;
+  color: #1c2541;
+  background: #6fffe9;
+  border: none;
+  font-size: 16px;
+  padding: 12px 5px;
+  margin-top: 4%;
+  margin-bottom: 4%;
+  width: 100%;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 500;
+  opacity: 0.8;
+  width: 100%;
+}
+
+.section-fast button:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.section-fastbutton:focus {
+  outline: none;
+}
+
 .section-form {
   width: 500px;
   padding: 30px;
@@ -240,6 +274,11 @@ body {
   opacity: 0;
 }
 
+.section-hide {
+  z-index: -1;
+  display: none;
+}
+
 /**ANIMATION**/
 @keyframes clignotement {
   0% {
@@ -286,6 +325,10 @@ body {
   }
 
   .section-form {
+    width: 80%;
+  }
+
+  .section-fast {
     width: 80%;
   }
 
