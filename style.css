@@ -110,6 +110,7 @@ body {
 .section-fast aside:hover {
   color: #54d4c1;
   cursor: pointer;
+  transform: rotate(-18deg);
 }
 
 .section-form {
