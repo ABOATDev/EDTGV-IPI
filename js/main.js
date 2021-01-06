@@ -8,6 +8,7 @@ const prenom = document.querySelector("#prenom");
 //pour la partie localstorage
 const sectionFast = document.querySelector(".section-fast");
 const sectionFastButton = document.querySelector(".section-fast button");
+const sectionFastReset = document.querySelector(".section-fast aside");
 
 const iFrame = document.querySelector("iframe");
 const edtPage = document.querySelector(".edt-page");
@@ -23,7 +24,7 @@ const capitalizeFirstLetter = (string) => {
 };
 
 const checkLocalStorage = () => {
-  //Detecte si l'utilisateur avait déjà rentré une ville auparavent, si ce n'est pas le cas, alors le SplashScreen s'affiche
+  //Detecte si l'utilisateur avait déjà rentré une un nom et un prénom auparavent, si ce n'est pas le cas bah cheh
   if (
     localStorage.getItem("nom") == "" ||
     localStorage.getItem("nom") == undefined ||
@@ -40,6 +41,11 @@ const checkLocalStorage = () => {
     )} ${capitalizeFirstLetter(valeurNom)}`;
     sectionFast.classList.remove("section-hide");
   }
+};
+
+const fullReset = () => {
+  sectionFast.classList.add("section-hide");
+  localStorage.clear();
 };
 
 checkLocalStorage();
@@ -209,3 +215,4 @@ prenom.addEventListener("input", verifPrenom);
 
 form.addEventListener("submit", submit, true);
 sectionFastButton.addEventListener("click", fastSubmit);
+sectionFastReset.addEventListener("click", fullReset);

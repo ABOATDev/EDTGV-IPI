@@ -70,6 +70,7 @@ body {
   padding-bottom: 0px;
   background: #3a506b;
   margin-bottom: 20px;
+  position: relative;
 }
 
 .section-fast button {
@@ -95,6 +96,20 @@ body {
 
 .section-fastbutton:focus {
   outline: none;
+}
+
+.section-fast aside {
+  position: absolute;
+  top: -15px;
+  right: -10px;
+  font-size: 25px;
+  transition: 0.3s;
+  color: #62f0da;
+}
+
+.section-fast aside:hover {
+  color: #54d4c1;
+  cursor: pointer;
 }
 
 .section-form {
