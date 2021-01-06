@@ -1,0 +1,307 @@
+/*Alors non je vais pas commenter mon css parce qu'il est éclaté*/
+body {
+  margin: 0;
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+
+  font-family: "Quicksand", sans-serif;
+
+  background: #1c2541;
+  color: white;
+}
+
+/**PAGE D'ACCUEIL**/
+.home-page {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.section-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.section-title h1 {
+  font-size: 75px;
+  letter-spacing: 4px;
+  margin: 0;
+  font-weight: 500;
+}
+
+.section-title h1 img {
+  height: 75px;
+  width: 75px;
+  filter: invert(77%) sepia(66%) saturate(306%) hue-rotate(110deg)
+    brightness(104%) contrast(104%);
+  transform: translateY(11px);
+  padding-left: 3px;
+}
+
+#alt-color {
+  color: #6fffe9;
+}
+
+.section-title h2 {
+  font-weight: normal;
+  font-size: 20px;
+  margin-top: 0px;
+  margin-bottom: 40px;
+  color: rgb(220, 220, 220);
+}
+
+.section-form {
+  width: 500px;
+  padding: 30px;
+  background: #3a506b;
+  border-radius: 2px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.section-form form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.section-form form input {
+  transition: 0.3s;
+  color: #6fffe9;
+  background: none;
+  border: none;
+  border-bottom: 2px solid#6fffe9c2;
+  font-size: 16px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 30px;
+  width: 100%;
+  font-family: "Quicksand", sans-serif;
+  opacity: 0.8;
+}
+
+.section-form form input::placeholder {
+  color: #5bc0be;
+}
+
+.section-form form input:focus {
+  outline: none;
+  opacity: 1;
+}
+
+.section-form form button {
+  transition: 0.3s;
+  color: #1c2541;
+  background: #6fffe9;
+  border: none;
+  font-size: 16px;
+  padding: 12px 5px;
+  margin-bottom: 2%;
+  width: 100%;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+.section-form form button:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.section-form form button:focus {
+  outline: none;
+}
+
+/**PAGE DE L'EDT**/
+.edt-page {
+  position: absolute;
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+
+  background: #1c2541;
+  z-index: 200;
+  transition: 0.3s;
+}
+
+.edt-page div {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.section-iframe {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.section-iframe::after {
+  padding-top: 56.25%;
+  display: block;
+  content: "";
+}
+
+.section-iframe iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.overlay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 200;
+
+  background: #1c2541;
+  transition: 0.3s;
+}
+
+.overlay p:first-child {
+  animation-duration: 1.5s;
+  animation-name: clignotement;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+  font-size: 20px;
+}
+
+.tip {
+  margin: 0;
+  font-style: italic;
+  transition: 0.3s;
+}
+
+.edt-page nav {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 100%;
+  border: none;
+
+  font-size: 1.5rem;
+
+  transition: 0.3s;
+  z-index: 10;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+
+  background: rgb(45, 56, 92);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.edt-page nav:hover {
+  cursor: pointer;
+  background: rgb(38, 48, 80);
+  transform: rotate(-18deg);
+}
+
+.hide {
+  z-index: -1;
+  opacity: 0;
+}
+
+/**ANIMATION**/
+@keyframes clignotement {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/**RESPONSIVE**/
+@media screen and (max-width: 1100px) {
+  .edt-page div {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .section-title {
+    width: 90%;
+  }
+
+  .section-title h1 {
+    font-size: 50px;
+    text-align: center;
+  }
+
+  .section-title h1 img {
+    height: 50px;
+    width: 50px;
+    filter: invert(77%) sepia(66%) saturate(306%) hue-rotate(110deg)
+      brightness(104%) contrast(104%);
+    transform: translateY(6px);
+  }
+
+  .section-title h2 {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .section-form {
+    width: 80%;
+  }
+
+  .section-iframe::after {
+    padding: 0;
+    height: 75vh;
+    display: block;
+    content: "";
+  }
+
+  .edt-page nav {
+    top: 1rem;
+    left: 1rem;
+
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.3rem;
+  }
+}
