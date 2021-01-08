@@ -252,6 +252,7 @@ body {
   margin: 0;
   font-style: italic;
   transition: 0.3s;
+  text-align: center;
 }
 
 .edt-page nav {

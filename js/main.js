@@ -80,6 +80,7 @@ const hoursMsg = (heure) => {
   return msg;
 };
 
+//petit tableau de texte de chargement parce que why not
 const tipTab = [
   "Désolé si ça met du temps, c'est la faute de l'edt.",
   "Grosse ambiance non ?",
@@ -101,6 +102,7 @@ const tipTab = [
 
 //permet de pas déclancher la fonction de tip quand l'iframe à fini de charger
 let timerOut = false;
+
 let firstTime = true;
 
 //*FONCTIONS
@@ -124,6 +126,15 @@ const verifNom = () => {
 const verifPrenom = () => {
   if (!isCharacterALetter(prenom.value[prenom.value.length - 1])) {
     prenom.value = prenom.value.slice(0, -1);
+  }
+};
+
+const checkNico = () => {
+  if (
+    valeurNom.toLowerCase() == "bouvier" &&
+    valeurPrenom.toLowerCase() == "nicolas"
+  ) {
+    valeurNom = "bouvier4";
   }
 };
 
@@ -165,6 +176,7 @@ const submit = function (event) {
 
     valeurNom = nom.value.toLowerCase();
     valeurPrenom = prenom.value.toLowerCase();
+    checkNico();
     localStorage.setItem("nom", valeurNom);
     localStorage.setItem("prenom", valeurPrenom);
 
