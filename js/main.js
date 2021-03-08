@@ -98,6 +98,19 @@ const tipTab = [
   `${hoursMsg(heure)}`,
   "Aled aled aled aled aled aled",
   "J'ai plus d'idées aled",
+  "Le saviez-vous ? J'en ai marre du Java",
+  "Le SOAP n'est efficace que pour se laver.",
+  "Dev = Réseau",
+  "Le sel est le seul aliment qui n'est pas périsable, car il n'évolue pas dans le temps.",
+  "En 2014, Tinder a eu son premier match en Antarctique",
+  "Une combinaison pour aller dans l’espace coûte 12 millions de dollars",
+  "Il faudra environ 25 Million d'années pour que l'emprunte de Neil Armstrong sur la lune disparaisse",
+  'Des pièces présentes dans le rover "Perseverance" sont Grenobloises',
+  "Les bananes sont plus radioactives que le Bismuth",
+  "La demie vie du Bismuth est plus d'un milliard de fois celle de l'âge de l'univers",
+  "Un coq, un mouton, et un canard étaient les premier passager de la montgolfière",
+  "Le logo de ChupaChups à été designé par Salvator Dali",
+  "Le premier cadis a été fait avec une chaise pliante avec un panier dessus, et avec des roulettes à ses pieds",
 ];
 
 //permet de pas déclancher la fonction de tip quand l'iframe à fini de charger
