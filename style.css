@@ -296,6 +296,35 @@ body {
   display: none;
 }
 
+.warning {
+  width: 500px;
+  padding: 30px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background: #ffb74d;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.warning div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+
+.warning i {
+  font-size: 25px;
+  margin-right: 15px;
+  color: #1c2541;
+}
+
+.warning p {
+  color: #1c2541;
+  text-align: justify;
+}
+
 /**ANIMATION**/
 @keyframes clignotement {
   0% {
