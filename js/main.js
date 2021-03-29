@@ -165,13 +165,13 @@ const fastSubmit = () => {
   }
   firstTime = false;
 
-  iFrame.src = `http://edtmobilite.wigorservices.net/WebPsDyn.aspx?Action=posETUD&serverid=C&tel=${valeurPrenom}.${valeurNom}&date=${
+  iFrame.src = `https://mylearningbox.reseau-cd.fr/revigs/WebPsDyn.aspx?action=posEDTBEECOME&serverID=C&Tel=${valeurPrenom}.${valeurNom}&date=${
     (date.getMonth() > 8 ? date.getMonth() + 1 : "0" + (date.getMonth() + 1)) +
     "/" +
     (date.getDate() > 9 ? date.getDate() : "0" + date.getDate()) +
     "/" +
     date.getFullYear()
-  }%208:00`;
+  }`;
 
   popTip();
 };
@@ -193,7 +193,7 @@ const submit = function (event) {
     localStorage.setItem("nom", valeurNom);
     localStorage.setItem("prenom", valeurPrenom);
 
-    iFrame.src = `http://edtmobilite.wigorservices.net/WebPsDyn.aspx?Action=posETUD&serverid=C&tel=${valeurPrenom}.${valeurNom}&date=${
+    iFrame.src = `https://mylearningbox.reseau-cd.fr/revigs/WebPsDyn.aspx?action=posEDTBEECOME&serverID=C&Tel=${valeurPrenom}.${valeurNom}&date=${
       (date.getMonth() > 8
         ? date.getMonth() + 1
         : "0" + (date.getMonth() + 1)) +
@@ -201,7 +201,7 @@ const submit = function (event) {
       (date.getDate() > 9 ? date.getDate() : "0" + date.getDate()) +
       "/" +
       date.getFullYear()
-    }%208:00`;
+    }`;
     event.preventDefault();
 
     popTip();
