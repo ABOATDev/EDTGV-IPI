@@ -286,6 +286,10 @@ body {
   transform: rotate(-18deg);
 }
 
+#nav-2{
+  top: 7rem;
+}
+
 .hide {
   z-index: -1;
   opacity: 0;

@@ -14,10 +14,13 @@ const iFrame = document.querySelector("iframe");
 const edtPage = document.querySelector(".edt-page");
 const overlay = document.querySelector(".overlay");
 const navButton = document.querySelector("nav");
+const navButtonReload = document.querySelectorAll("nav")[1];
 const tip = document.querySelector(".tip");
 
 let valeurNom;
 let valeurPrenom;
+
+navButtonReload.classList.add("hide");
 
 const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -54,7 +57,7 @@ checkLocalStorage();
 let date = new Date();
 let heure = date.getHours();
 
-//*Pour le lol
+//Pour le lol
 const hoursMsg = (heure) => {
   let msg = "";
   if (heure < 7) {
@@ -115,7 +118,6 @@ const tipTab = [
 
 //permet de pas déclancher la fonction de tip quand l'iframe à fini de charger
 let timerOut = false;
-
 let firstTime = true;
 
 //*FONCTIONS
@@ -176,6 +178,33 @@ const fastSubmit = () => {
   popTip();
 };
 
+const reload = () => {
+  overlay.classList.remove("hide");
+  edtPage.classList.add("hide");
+  tip.classList.add("hide");
+  navButtonReload.classList.add("hide");
+  timerOut = false;
+
+  edtPage.classList.remove("hide");
+  iFrame.classList.add("hide");
+  overlay.classList.remove("hide");
+
+  if (firstTime) {
+    timerOut = false;
+  }
+  firstTime = false;
+
+  iFrame.src = `https://mylearningbox.reseau-cd.fr/revigs/WebPsDyn.aspx?action=posEDTBEECOME&serverID=C&Tel=${valeurPrenom}.${valeurNom}&date=${
+    (date.getMonth() > 8 ? date.getMonth() + 1 : "0" + (date.getMonth() + 1)) +
+    "/" +
+    (date.getDate() > 9 ? date.getDate() : "0" + date.getDate()) +
+    "/" +
+    date.getFullYear()
+  }`;
+
+  popTip();
+}
+
 const submit = function (event) {
   if (prenom.value != "" && nom.value != "") {
     edtPage.classList.remove("hide");
@@ -224,6 +253,7 @@ iFrame.onload = function () {
   timerOut = true;
   iFrame.classList.remove("hide");
   overlay.classList.add("hide");
+  navButtonReload.classList.remove("hide");
 };
 
 //Permet de revenir à la page d'accueil en cliquant sur le bouton (tout en faisant un gros reset)
@@ -231,9 +261,12 @@ navButton.addEventListener("click", function () {
   overlay.classList.remove("hide");
   edtPage.classList.add("hide");
   tip.classList.add("hide");
+  navButtonReload.classList.add("hide");
   timerOut = false;
   checkLocalStorage();
 });
+
+navButtonReload.addEventListener("click", reload)
 
 nom.addEventListener("input", verifNom);
 prenom.addEventListener("input", verifPrenom);
