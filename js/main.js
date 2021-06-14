@@ -5,6 +5,7 @@ const form = document.querySelector("form");
 const formButton = document.querySelector("button");
 const nom = document.querySelector("#nom");
 const prenom = document.querySelector("#prenom");
+const userDate = document.querySelector("#date");
 //pour la partie localstorage
 const sectionFast = document.querySelector(".section-fast");
 const sectionFastButton = document.querySelector(".section-fast button");
@@ -19,6 +20,7 @@ const tip = document.querySelector(".tip");
 
 let valeurNom;
 let valeurPrenom;
+let valeurDate;
 
 navButtonReload.classList.add("hide");
 
@@ -131,6 +133,46 @@ const isCharacterALetter = (char) => {
   return /[a-zA-Z]/.test(char); //REGEX OUAIS OUAIS OUAIS
 };
 
+const isDateFormat = (date) => {
+  return /(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d/.test(date); // aled
+}
+
+const formatDate = (userDate) => {
+  // Fun fact : Je déteste travailler avec les dates et je pense avoir fait ça de la pire manière possible
+  console.log(userDate)
+  var finalDate = (date.getMonth() > 8 ? date.getMonth() + 1 : "0" + (date.getMonth() + 1)) +
+  "/" +
+  (date.getDate() > 9 ? date.getDate() : "0" + date.getDate()) +
+  "/" +
+  date.getFullYear()
+
+  console.log(isDateFormat(userDate))
+  // 14/06/2021
+  if(isDateFormat(userDate)){
+    let temp = [userDate[3], userDate[4], '/', userDate[0], userDate[1], '/' , userDate[6], userDate[7], userDate[8], userDate[9]].join('') 
+    console.log(temp)
+    finalDate = temp
+    console.log(finalDate)
+    console.log("aaaaa")
+  }
+  else if(!isNaN(userDate) && (userDate.includes("+") || userDate.includes("-"))){
+    let now = new Date();
+    let numberOfWeek = +userDate.substring(1); // on converti en int grace à +
+    userDate.includes("+") ? now.setDate(now.getDate() + numberOfWeek * 7) : now.setDate(now.getDate() - numberOfWeek * 7);
+
+    finalDate = (now.getMonth() > 8 ? now.getMonth() + 1 : "0" + (now.getMonth() + 1)) +
+    "/" +
+    (now.getDate() > 9 ? now.getDate() : "0" + now.getDate()) +
+    "/" +
+    now.getFullYear()
+
+    console.log("bbbbb")
+  }
+
+  return finalDate
+}
+
+
 //Ouais j'aurais pu les regrouper en une seule fonction mais flemme de me battre contre les EventListener et il est 1h là
 const verifNom = () => {
   if (!isCharacterALetter(nom.value[nom.value.length - 1])) {
@@ -218,19 +260,12 @@ const submit = function (event) {
 
     valeurNom = nom.value.toLowerCase();
     valeurPrenom = prenom.value.toLowerCase();
+    valeurDate = userDate.value;
     checkNico();
     localStorage.setItem("nom", valeurNom);
     localStorage.setItem("prenom", valeurPrenom);
 
-    iFrame.src = `https://mylearningbox.reseau-cd.fr/revigs/WebPsDyn.aspx?action=posEDTBEECOME&serverID=C&Tel=${valeurPrenom}.${valeurNom}&date=${
-      (date.getMonth() > 8
-        ? date.getMonth() + 1
-        : "0" + (date.getMonth() + 1)) +
-      "/" +
-      (date.getDate() > 9 ? date.getDate() : "0" + date.getDate()) +
-      "/" +
-      date.getFullYear()
-    }`;
+    iFrame.src = `https://mylearningbox.reseau-cd.fr/revigs/WebPsDyn.aspx?action=posEDTBEECOME&serverID=C&Tel=${valeurPrenom}.${valeurNom}&date=${formatDate(valeurDate)}`;
     event.preventDefault();
 
     popTip();
