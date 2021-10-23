@@ -186,14 +186,6 @@ const verifPrenom = () => {
   }
 };
 
-const checkNico = () => {
-  if (
-    valeurNom.toLowerCase() == "bouvier" &&
-    valeurPrenom.toLowerCase() == "nicolas"
-  ) {
-    valeurNom = "bouvier4";
-  }
-};
 
 /*
 Coeur du progamme, on vérifie si les valeurs des inputs ne sont pas nulles ////comme moi 
@@ -209,7 +201,7 @@ const fastSubmit = () => {
   }
   firstTime = false;
 
-  iFrame.src = `https://mylearningbox.reseau-cd.fr/revigs/WebPsDyn.aspx?action=posEDTBEECOME&serverID=C&Tel=${valeurPrenom}.${valeurNom}&date=${
+  iFrame.src = `https://edtmobiliteng.wigorservices.net/WebPsDyn.aspx?action=posEDTBEECOME&Tel=${valeurPrenom}.${valeurNom}&date=${
     (date.getMonth() > 8 ? date.getMonth() + 1 : "0" + (date.getMonth() + 1)) +
     "/" +
     (date.getDate() > 9 ? date.getDate() : "0" + date.getDate()) +
@@ -236,7 +228,7 @@ const reload = () => {
   }
   firstTime = false;
 
-  iFrame.src = `https://mylearningbox.reseau-cd.fr/revigs/WebPsDyn.aspx?action=posEDTBEECOME&serverID=C&Tel=${valeurPrenom}.${valeurNom}&date=${
+  iFrame.src = `https://edtmobiliteng.wigorservices.net/WebPsDyn.aspx?action=posEDTBEECOME&Tel=${valeurPrenom}.${valeurNom}&date=${
     (date.getMonth() > 8 ? date.getMonth() + 1 : "0" + (date.getMonth() + 1)) +
     "/" +
     (date.getDate() > 9 ? date.getDate() : "0" + date.getDate()) +
@@ -248,7 +240,8 @@ const reload = () => {
 }
 
 const submit = function (event) {
-  if (prenom.value != "" && nom.value != "") {
+  if (prenom.value != "" && nom.value != "" || (valeurNom && valeurPrenom) ) {
+    console.log("yesss");
     edtPage.classList.remove("hide");
     iFrame.classList.add("hide");
     overlay.classList.remove("hide");
@@ -258,15 +251,22 @@ const submit = function (event) {
     }
     firstTime = false;
 
-    valeurNom = nom.value.toLowerCase();
-    valeurPrenom = prenom.value.toLowerCase();
+
+
+    if(prenom.value != "" && nom.value != ""){
+      valeurNom = nom.value.toLowerCase();
+      valeurPrenom = prenom.value.toLowerCase();
+    }
     valeurDate = userDate.value;
-    checkNico();
     localStorage.setItem("nom", valeurNom);
     localStorage.setItem("prenom", valeurPrenom);
 
-    iFrame.src = `https://mylearningbox.reseau-cd.fr/revigs/WebPsDyn.aspx?action=posEDTBEECOME&serverID=C&Tel=${valeurPrenom}.${valeurNom}&date=${formatDate(valeurDate)}`;
-    event.preventDefault();
+    iFrame.src = `https://edtmobiliteng.wigorservices.net/WebPsDyn.aspx?action=posEDTBEECOME&Tel=${valeurPrenom}.${valeurNom}&date=${formatDate(valeurDate)}`;
+    
+    if(event){
+      event.preventDefault();
+    }
+    
 
     popTip();
   }
@@ -301,6 +301,25 @@ navButton.addEventListener("click", function () {
   checkLocalStorage();
 });
 
+
+
+function $_GET(param) {
+	var vars = {};
+	window.location.href.replace( location.hash, '' ).replace( 
+		/[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+		function( m, key, value ) { // callback
+			vars[key] = value !== undefined ? value : '';
+		}
+	);
+
+	if ( param ) {
+		return vars[param] ? vars[param] : null;	
+	}
+	return vars;
+}
+
+
+
 navButtonReload.addEventListener("click", reload)
 
 nom.addEventListener("input", verifNom);
@@ -309,3 +328,28 @@ prenom.addEventListener("input", verifPrenom);
 form.addEventListener("submit", submit, true);
 sectionFastButton.addEventListener("click", fastSubmit);
 sectionFastReset.addEventListener("click", fullReset);
+
+
+
+//Pour accéder direct a EDT si ya des paramètres 
+var $_GET = $_GET();
+if($_GET['prenom'] && $_GET['nom']){
+  valeurPrenom = $_GET['prenom'];
+  console.log(valeurPrenom)
+  valeurNom = $_GET['nom'];
+  submit();
+}
+
+
+
+//Pour accéder direct a EDT
+if (
+  localStorage.getItem("nom") && 
+  localStorage.getItem("prenom")
+) {
+  valeurNom = localStorage.getItem("nom");
+  valeurPrenom = localStorage.getItem("prenom");
+  prenom.value = localStorage.getItem("prenom");
+  nom.value = localStorage.getItem("nom");
+  submit();
+}
